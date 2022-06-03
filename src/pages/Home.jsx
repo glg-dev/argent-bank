@@ -7,13 +7,13 @@ import security from '../img/icon-security.png';
 const Home = () => {
   return (
     <main>
-      <div className="bg-[url('../img/bank-tree.jpeg')] bg-hero bg-cover bg-no-repeat h-300px relative custom-920:h-400px custom-920:bg-hero2">
-        <section className="relative top-8 w-200px bg-[#FFF] p-8 text-left my-0 mx-auto custom-920:absolute custom-920:top-50px custom-920:right-50px custom-920:w-300px custom-920:m-8 custom-920:text-1.5">
+      <div className="bg-[url('../img/bank-tree.jpeg')] bg-hero bg-cover bg-no-repeat h-[300px] relative custom-920:h-[400px] custom-920:bg-hero2">
+        <section className="relative top-8 w-[200px] bg-[#FFF] p-8 text-left my-0 mx-auto custom-920:absolute custom-920:top-[50px] custom-920:right-[50px] custom-920:w-[350px] custom-920:m-8 custom-920:text-1.5">
           <h2 className="sr-only">Promoted Content</h2>
-          <p className='font-bold text-base m-0'>No fees.</p>
-          <p className='font-bold text-base m-0'>No minimum deposit.</p>
-          <p className='font-bold text-base m-0'>High interest rates.</p>
-          <p className="mb-0 text-0.9 custom-920:text-1.2">Open a savings account with Argent Bank today!</p>
+          <p className='font-bold text-base m-0 leading-tight'>No fees.</p>
+          <p className='font-bold text-base m-0 leading-tight'>No minimum deposit.</p>
+          <p className='font-bold text-base m-0 leading-tight'>High interest rates.</p>
+          <p className="mb-0 text-0.9 custom-920:text-1.2 mt-4 leading-tight">Open a savings account with Argent Bank today!</p>
         </section>
       </div>
 

@@ -4,9 +4,9 @@ import Account from '../components/Account';
 const User = () => {
   return (
     <main className='flex-1 bg-dark-blue pb-1'>
-      <div className="text-[#FFF] mb-8">
+      <div className="text-[#FFF] mb-8 pt-[15px]">
         <h1>Welcome back <br /> Tony Jarvis!</h1>
-        <button className="border-green2 bg-green2 font-bold p-10px">Edit name</button>
+        <button className="border-green2 bg-green2 font-bold p-[10px] mt-4">Edit name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" description="Available Balance" />

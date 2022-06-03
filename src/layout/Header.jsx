@@ -5,7 +5,7 @@ import logo from '../img/argentBankLogo.png'
 const Header = () => {
   return (
     <div>
-      <nav className='flex justify-between items-center py-5px px-20px'>
+      <nav className='flex justify-between items-center py-[5px] px-[20px]'>
         <NavLink to='/' className='flex items-center font-bold text-grey-blue active:text-green'>
           <img src={logo} alt='Argent Bank Logo' className='w-48 max-w-full' />
           <h1 className="sr-only">Argent Bank</h1>

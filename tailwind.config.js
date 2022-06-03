@@ -34,26 +34,11 @@ module.exports = {
       '2': '2px',
       '10': '10px',
     },
-    borderRadius: {
-      '50': '50%',
-    },
     screens: {
       'custom-720': '720px',
       'custom-920': '920px',
     },
-    extend: {
-      spacing: {
-        '5px': '5px',
-        '10px': '10px',
-        '15px': '15px',
-        '20px': '20px',
-        '50px': '50px',
-        '100px': '100px',
-        '200px': '200px',
-        '300px': '300px',
-        '400px': '400px',
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
