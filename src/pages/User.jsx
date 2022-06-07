@@ -1,11 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Account from '../components/Account';
 
 const User = () => {
+
+  const firstName = useSelector(state => state.login.firstName);
+  const lastName = useSelector(state => state.login.lastName);
+
   return (
     <main className='flex-1 bg-dark-blue pb-1'>
       <div className="text-[#FFF] mb-8 pt-[15px]">
-        <h1>Welcome back <br /> Tony Jarvis!</h1>
+        <h1>Welcome back <br /> {firstName} {lastName}!</h1>
         <button className="border-green2 bg-green2 font-bold p-[10px] mt-4">Edit name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>

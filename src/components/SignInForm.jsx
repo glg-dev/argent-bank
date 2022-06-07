@@ -1,32 +1,48 @@
-import React, { useState } from 'react'
-import { userLogin } from '../services/api';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchToken, fetchUserProfile, login, remember } from '../feature/loginSlice';
 
 
 function SignInForm() {
 
-  const [username, setUsername] = useState("tony@stark.com");
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  
+  const [email, setEmail] = useState("tony@stark.com");
   const [password, setPassword] = useState("password123");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [token, setToken] = useState();
 
-  const handleSubmit = (event) => {
+  const logged = useSelector(state => state.login.loggedIn);
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`username : "${username}" / password : "${password}"`);
-    userLogin(username, password)
+    const response = await dispatch(fetchToken(email, password))
+    const request = await dispatch(fetchUserProfile(response.token))
+      dispatch(login(true))
+      navigate('/user/profile')
+    console.log(request)
   }
+
+  // useEffect(() => {
+  //   console.log('login', logged);
+  //   if (logged) {
+  //     navigate('/user/profile')
+  //   }
+  // }, [logged, navigate])
+
 
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex flex-col text-left mb-4">
-          <label htmlFor="username" className='font-bold'>Username</label>
+          <label htmlFor="email" className='font-bold'>Username</label>
           <input 
             type="email" 
-            name="username" 
-            id="username" 
+            name="email" 
+            id="email" 
             className='border-1 p-[5px] text-1.2'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
           />
         </div>
         <div className="flex flex-col text-left mb-4">
@@ -45,7 +61,7 @@ function SignInForm() {
             type="checkbox" 
             id="remember-me"
             className='mr-2'
-            onChange={(e) => setRememberMe(e.target.checked)}
+            onChange={(e) => dispatch(remember(e.target.checked))}
           />
           <label htmlFor="remember-me" className='ml-1'>Remember me</label>
         </div>

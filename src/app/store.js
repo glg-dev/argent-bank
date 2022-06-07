@@ -1,13 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import loginReducer from '../feature/loginSlice'
 
 export default configureStore({
   reducer: {
-    // user: null,
-    // isLoggedIn: false,
-    // isLoading: false,
-    // error: null,
-    // password: null,
-    // token: null,
-    isRemembered: false
+    login: loginReducer,
   }
 })
