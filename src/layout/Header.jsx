@@ -1,8 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+import { getFirstName, getLastName, getToken, login } from '../feature/loginSlice';
 import logo from '../img/argentBankLogo.png'
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+
+  const loggedIn = useSelector(state => state.login.isLoggedIn);
+  const firstName = useSelector(state => state.login.firstName);
+
+  const handleLogout = () => {
+    dispatch(getFirstName(""));
+    dispatch(getLastName(""));
+    dispatch(getToken(""));
+    dispatch(login(false));
+  }
+
   return (
     <div>
       <nav className='flex justify-between items-center py-[5px] px-[20px]'>
@@ -11,10 +26,17 @@ const Header = () => {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          <NavLink to='/sign-in' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2'>
-            <i className="fa fa-user-circle"></i>
-            <span> Sign In</span>
+          <NavLink to='/login' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2'>
+            <i className="fa fa-user-circle fa-lg"></i>
+            <span> { firstName ? firstName : "Sign In"}</span>
           </NavLink>
+          {
+            loggedIn && 
+            <Link to='/' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2' onClick={handleLogout}>
+              <i className="fa fa-sign-out"></i>
+              <span> Sign Out</span>
+            </Link>
+          }
         </div>
       </nav>
     </div>

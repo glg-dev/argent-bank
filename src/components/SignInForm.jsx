@@ -18,9 +18,8 @@ function SignInForm() {
     event.preventDefault();
     const response = await dispatch(fetchToken(email, password))
     const request = await dispatch(fetchUserProfile(response.token))
-      dispatch(login(true))
-      navigate('/user/profile')
-    console.log(request)
+    dispatch(login(true))
+    navigate('/profile')
   }
 
   // useEffect(() => {

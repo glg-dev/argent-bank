@@ -18,8 +18,8 @@ root.render(
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/sign-in' element={<SignIn />} />
-          <Route path='/user/profile' element={<User />} />
+          <Route path='/login' element={<SignIn />} />
+          <Route path='/profile' element={<User />} />
         </Routes>
         <Footer />
       </BrowserRouter>
