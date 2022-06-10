@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import store from './app/store';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
@@ -10,19 +12,23 @@ import SignIn from './pages/SignIn';
 import User from './pages/User';
 import './styles/style.css'
 
+let persistor = persistStore(store);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<SignIn />} />
-          <Route path='/profile' element={<User />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<SignIn />} />
+            <Route path='/profile' element={<User />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

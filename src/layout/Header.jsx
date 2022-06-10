@@ -33,7 +33,7 @@ const Header = () => {
           {
             loggedIn && 
             <Link to='/' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2' onClick={handleLogout}>
-              <i className="fa fa-sign-out"></i>
+              <i className="fa fa-right-from-bracket"></i>
               <span> Sign Out</span>
             </Link>
           }
