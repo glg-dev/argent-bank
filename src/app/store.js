@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers, createStore } from "redux";
-import {persistStore, persistReducer} from "redux-persist";
+import { persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import loginReducer from '../feature/loginSlice'
@@ -8,12 +8,6 @@ import loginReducer from '../feature/loginSlice'
 const reducers = combineReducers({
   login: loginReducer
 });
-
-// export default configureStore({
-//   reducer: {
-//     login: loginReducer,
-//   }
-// })
 
 const persistConfig = {
   key: 'root',

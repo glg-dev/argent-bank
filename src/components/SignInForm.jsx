@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchToken, fetchUserProfile, login, remember } from '../feature/loginSlice';
+import { fetchToken, fetchUserProfile, login, rememberCheckbox, rememberEmail, rememberPassword } from '../feature/loginSlice';
 
 
 function SignInForm() {
@@ -9,10 +9,14 @@ function SignInForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
-  const [email, setEmail] = useState("tony@stark.com");
-  const [password, setPassword] = useState("password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+  const username = useSelector(state => state.login.email);
+  const password_ = useSelector(state => state.login.password);
 
-  const logged = useSelector(state => state.login.loggedIn);
+  // const logged = useSelector(state => state.login.loggedIn);
+  const remember_ = useSelector(state => state.login.remember);
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,6 +24,15 @@ function SignInForm() {
     const request = await dispatch(fetchUserProfile(response.token))
     dispatch(login(true))
     navigate('/profile')
+    remember && handleRemember()
+  }
+
+  function handleRemember() {
+    dispatch(rememberCheckbox(true))
+    dispatch(rememberEmail(username))
+    setEmail(username)
+    dispatch(rememberPassword(password_))
+    setPassword(password_)
   }
 
   // useEffect(() => {
@@ -60,7 +73,8 @@ function SignInForm() {
             type="checkbox" 
             id="remember-me"
             className='mr-2'
-            onChange={(e) => dispatch(remember(e.target.checked))}
+            onChange={(e) => setRemember(e.target.checked)}
+            value={remember_}
           />
           <label htmlFor="remember-me" className='ml-1'>Remember me</label>
         </div>

@@ -11,7 +11,9 @@ export const loginSlice = createSlice({
     lastName: "",
     data: [],
     token: "",
-    isRemembered: false,
+    email: "",
+    password: "",
+    remember: false,
     isLoggedIn: false,
   },
   reducers: {
@@ -21,8 +23,14 @@ export const loginSlice = createSlice({
     getLastName: (state, {payload}) => {
       state.lastName = payload;
     },
-    remember: (state, {payload}) => {
-      state.isRemembered = payload;
+    rememberEmail: (state, {payload}) => {
+      state.email = payload;
+    },
+    rememberPassword: (state, {payload}) => {
+      state.password = payload;
+    },
+    rememberCheckbox: (state, {payload}) => {
+      state.remember = payload;
     },
     addData: (state, {payload}) => {
       state.data.push(payload);
@@ -65,5 +73,5 @@ export const fetchUserProfile = (token) => async (dispatch) => {
   }
 }
 
-export const { getFirstName, getLastName, remember, getToken, login } = loginSlice.actions;
+export const { getFirstName, getLastName, rememberEmail, rememberPassword, rememberCheckbox, getToken, login } = loginSlice.actions;
 export default loginSlice.reducer;
