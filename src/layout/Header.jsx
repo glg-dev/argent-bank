@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
@@ -26,14 +28,14 @@ const Header = () => {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          <NavLink to='/login' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2'>
-            <i className="fa fa-user-circle fa-lg"></i>
+          <NavLink to={loggedIn ? '/profile' : '/login'} className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2'>
+            <FontAwesomeIcon icon={faUserCircle} />
             <span> { firstName ? firstName : "Sign In"}</span>
           </NavLink>
           {
             loggedIn && 
-            <Link to='/' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2' onClick={handleLogout}>
-              <i className="fa fa-right-from-bracket"></i>
+            <Link to='/' className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2 ml-4' onClick={handleLogout}>
+              <FontAwesomeIcon icon={faSignOutAlt} />
               <span> Sign Out</span>
             </Link>
           }

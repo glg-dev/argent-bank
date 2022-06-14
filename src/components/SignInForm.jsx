@@ -9,14 +9,13 @@ function SignInForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
   const username = useSelector(state => state.login.email);
   const password_ = useSelector(state => state.login.password);
-
-  // const logged = useSelector(state => state.login.loggedIn);
   const remember_ = useSelector(state => state.login.remember);
+  
+  const [email, setEmail] = useState(remember_ ? username : "");
+  const [password, setPassword] = useState(remember_ ? password_ : "");
+
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,16 +23,21 @@ function SignInForm() {
     const request = await dispatch(fetchUserProfile(response.token))
     dispatch(login(true))
     navigate('/profile')
-    remember && handleRemember()
+    remember_ && handleRemember()
+    !remember_ && dispatch(rememberEmail(""))
+    !remember_ && dispatch(rememberPassword(""))
+    console.log(remember_);
   }
 
   function handleRemember() {
+    console.log('ok');
     dispatch(rememberCheckbox(true))
     dispatch(rememberEmail(username))
-    setEmail(username)
     dispatch(rememberPassword(password_))
-    setPassword(password_)
   }
+
+  // console.log(remember_);
+  // console.log(useSelector(state => state.login.rememberCheckbox));
 
   // useEffect(() => {
   //   console.log('login', logged);
@@ -53,7 +57,7 @@ function SignInForm() {
             name="email" 
             id="email" 
             className='border-1 p-[5px] text-1.2'
-            value={email}
+            value={remember_ ? username : email}
             onChange={(e) => setEmail(e.target.value)} 
           />
         </div>
@@ -64,7 +68,7 @@ function SignInForm() {
             name="password" 
             id="password" 
             className='border-1 p-5px text-1.2'
-            value={password}
+            value={remember_ ? password_ : password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -73,8 +77,9 @@ function SignInForm() {
             type="checkbox" 
             id="remember-me"
             className='mr-2'
-            onChange={(e) => setRemember(e.target.checked)}
+            onChange={(e) => dispatch(rememberCheckbox(e.target.checked))}
             value={remember_}
+            checked={remember_}
           />
           <label htmlFor="remember-me" className='ml-1'>Remember me</label>
         </div>

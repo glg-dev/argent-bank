@@ -38,7 +38,11 @@ module.exports = {
       'custom-720': '720px',
       'custom-920': '920px',
     },
-    extend: {},
+    extend: {
+      spacing: {
+        '80vw': '80vw',
+      }
+    },
   },
   plugins: [],
 }

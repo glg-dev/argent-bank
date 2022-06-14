@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import User from './pages/User';
 import './styles/style.css'
+import Error from './pages/Error';
 
 let persistor = persistStore(store);
 
@@ -25,6 +26,7 @@ root.render(
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<SignIn />} />
             <Route path='/profile' element={<User />} />
+            <Route path='*' element={<Error />} />
           </Routes>
           <Footer />
         </BrowserRouter>
