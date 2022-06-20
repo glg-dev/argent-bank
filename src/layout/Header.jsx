@@ -14,8 +14,8 @@ const Header = () => {
   const firstName = useSelector(state => state.login.firstName);
 
   const handleLogout = () => {
-    dispatch(getFirstName(""));
-    dispatch(getLastName(""));
+    // dispatch(getFirstName(""));
+    // dispatch(getLastName(""));
     dispatch(getToken(""));
     dispatch(login(false));
   }
@@ -30,7 +30,7 @@ const Header = () => {
         <div>
           <NavLink to={loggedIn ? '/profile' : '/login'} className='no-underline hover:underline font-bold text-grey-blue active:text-green mr-2'>
             <FontAwesomeIcon icon={faUserCircle} />
-            <span> { firstName ? firstName : "Sign In"}</span>
+            <span> { loggedIn ? firstName : "Sign In"}</span>
           </NavLink>
           {
             loggedIn && 

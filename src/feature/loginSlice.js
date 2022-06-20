@@ -9,7 +9,6 @@ export const loginSlice = createSlice({
   initialState: {
     firstName: "",
     lastName: "",
-    data: [],
     token: "",
     email: "",
     password: "",
@@ -31,9 +30,6 @@ export const loginSlice = createSlice({
     },
     rememberCheckbox: (state, {payload}) => {
       state.remember = payload;
-    },
-    addData: (state, {payload}) => {
-      state.data.push(payload);
     },
     getToken: (state, {payload}) => {
       state.token = payload;
@@ -70,6 +66,26 @@ export const fetchUserProfile = (token) => async (dispatch) => {
     return res.data.body;
   } catch (error) {
     throw new Error(error);
+  }
+}
+
+export const userEdit = (firstName, lastName, token) => async (dispatch) => {
+  try {
+    console.log(firstName, lastName, token);
+    const res = await axios.put(`${BASE_URL}/user/profile`, {
+      firstName,
+      lastName
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    console.log(res.data.body);
+    dispatch(getFirstName(res.data.body.firstName));
+    dispatch(getLastName(res.data.body.lastName));
+    return res.data.body;
+  } catch(error) {
+    throw new Error(error)
   }
 }
 

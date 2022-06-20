@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFirstName, getLastName } from '../feature/loginSlice';
+import { getFirstName, getLastName, userEdit } from '../feature/loginSlice';
 
 
 function UserBanner() {
 
   const firstName = useSelector(state => state.login.firstName);
   const lastName = useSelector(state => state.login.lastName);
+  const token = useSelector(state => state.login.token);
   const firstInput = useRef();
   const lastInput = useRef();
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function UserBanner() {
     setEdit(false)
     dispatch(getFirstName(firstInput.current.value))
     dispatch(getLastName(lastInput.current.value))
+    const request = dispatch(userEdit(firstInput.current.value, lastInput.current.value, token))
   }
 
   return (

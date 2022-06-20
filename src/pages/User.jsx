@@ -1,12 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Account from '../components/Account';
 import UserBanner from '../components/UserBanner';
 
 const User = () => {
-
-  const firstName = useSelector(state => state.login.firstName);
-  const lastName = useSelector(state => state.login.lastName);
 
   return (
     <main className='flex-1 bg-dark-blue pb-1'>

@@ -10,6 +10,7 @@ module.exports = {
       'gray-light': '#ccc',
       'gray-dark': '#222',
       'dark-blue': '#12002b',
+      'error': '#e74c3c',
     },
     fontFamily: {
       sans: ['Avenir', 'Helvetica', 'Arial', 'sans-serif'],
