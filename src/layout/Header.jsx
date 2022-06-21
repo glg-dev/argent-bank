@@ -3,7 +3,7 @@ import { faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import { getFirstName, getLastName, getToken, login } from '../feature/loginSlice';
+import { getToken, login } from '../feature/loginSlice';
 import logo from '../img/argentBankLogo.png'
 
 const Header = () => {
@@ -14,8 +14,6 @@ const Header = () => {
   const firstName = useSelector(state => state.login.firstName);
 
   const handleLogout = () => {
-    // dispatch(getFirstName(""));
-    // dispatch(getLastName(""));
     dispatch(getToken(""));
     dispatch(login(false));
   }
